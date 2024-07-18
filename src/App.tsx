@@ -6,13 +6,11 @@ export default function App() {
   const [valueAlcool, setValueAlcool] = useState(0)
   const [gasolina, setGasolina] = useState('')
   const [valueGasolina, setValueGasolina] = useState(0)
-  const [on, setOn] = useState(false)
   let resultado = valueAlcool / valueGasolina
 
   function calcular(e:FormEvent) {
     e.preventDefault()
     if(alcool !=='' && gasolina !==''){
-      setOn(true)
       if(resultado <= 0.7){
         alert('Abasteça com álcool')
       }else{
