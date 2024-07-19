@@ -10,6 +10,7 @@
     width: 100%;
     height: 100dvh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: #141d20;
@@ -66,5 +67,36 @@ button:hover{
 }
 
 h2{
+    color: white;
+}
+
+.resultado{
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px 30px;
+    border: none;
+    border-radius: 8px;
+    background: #00bd48;
+    transition: .2s ease-in-out all;
+}
+
+.resultado h2{
+    margin-bottom: 10px;
+}
+
+.resultado p:not(:last-child){
+    margin-bottom: 5px;
+    color: #141d20;;
+}
+
+.reset{
+    font-size: .9rem;
+    align-self: center;
+    margin: 15px 0;
+    transition: .2s ease-in-out all;
+    cursor: pointer;
+}
+
+.reset:hover{
     color: white;
 }

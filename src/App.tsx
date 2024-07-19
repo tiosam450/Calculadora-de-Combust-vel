@@ -1,24 +1,53 @@
 import { FormEvent, useState } from 'react'
 import icone from './assets/img/icone_combustivel.png'
 
+interface Resultado{
+  combustivel: string
+  precoAlcool: string
+  precoGasolina: string
+}
+
 export default function App() {
   const [alcool, setAlcool] = useState('')
   const [valueAlcool, setValueAlcool] = useState(0)
   const [gasolina, setGasolina] = useState('')
   const [valueGasolina, setValueGasolina] = useState(0)
-  let resultado = valueAlcool / valueGasolina
-
-  function calcular(e:FormEvent) {
+  const [resultado, setResultado] = useState<Resultado>()
+  
+  function calcular(e: FormEvent) {
+    let resultado = valueAlcool / valueGasolina
     e.preventDefault()
-    if(alcool !=='' && gasolina !==''){
-      if(resultado <= 0.7){
-        alert('Abasteça com álcool')
-      }else{
-        alert('Abasteça com gasolina')
+    if (alcool !== '' && gasolina !== ''&& alcool !== 'R$ 0,00' && gasolina !== 'R$ 0,00') {
+      if (resultado <= 0.7) {
+        setResultado({
+          combustivel: 'álcool',
+          precoAlcool: alcool,
+          precoGasolina: gasolina,
+        })
+        setAlcool('')
+        setGasolina('')
+        // alert('Abasteça com álcool')
+      } else {
+        setResultado({
+          combustivel: 'álcool',
+          precoAlcool: alcool,
+          precoGasolina: gasolina,
+        })
+        setAlcool('')
+        setGasolina('')
+        // alert('Abasteça com gasolina')
       }
-    }else{
+    } else {
       alert('Preencha os dados corretamente!')
     }
+  }
+
+  function reset(){
+    setResultado({
+      combustivel: '',
+      precoAlcool: alcool,
+      precoGasolina: gasolina,
+    })
   }
 
 
@@ -78,9 +107,17 @@ export default function App() {
             <input type="text" value={alcool} placeholder='Digite o preço do álcool' onChange={fotmataValorAlcool} />
             <label htmlFor="">Preço da gasolina</label>
             <input type="text" value={gasolina} placeholder='Digite o preço da gasolina' onChange={fotmataValorGasolina} />
-            <button>Calcular</button>
+
+            <button type='submit'>Calcular</button>
+            <label className='reset' onClick={reset}>Reset</label>
+
           </form>
         </div>
+        {resultado?.combustivel && Object.keys(resultado).length > 0 && <div className='resultado'>
+          <h2>Vai de {resultado?.combustivel}</h2>
+          <p>Preço do álcool <b>{resultado?.precoAlcool}</b></p>
+          <p>Preço da gasolina <b>{resultado?.precoGasolina}</b></p>
+        </div>}
       </div>
     </>
   )
