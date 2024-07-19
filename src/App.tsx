@@ -104,9 +104,9 @@ export default function App() {
 
           <form onSubmit={calcular}>
             <label htmlFor="">Preço do álcool</label>
-            <input type="text" value={alcool} placeholder='Digite o preço do álcool' onChange={fotmataValorAlcool} />
+            <input type="tel" value={alcool} placeholder='Digite o preço do álcool' onChange={fotmataValorAlcool} />
             <label htmlFor="">Preço da gasolina</label>
-            <input type="text" value={gasolina} placeholder='Digite o preço da gasolina' onChange={fotmataValorGasolina} />
+            <input type="tel" value={gasolina} placeholder='Digite o preço da gasolina' onChange={fotmataValorGasolina} />
 
             <button type='submit'>Calcular</button>
             <label className='reset' onClick={reset}>Reset</label>
